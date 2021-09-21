@@ -1,0 +1,68 @@
+
+// extensions pour VSCODE
+
+PHP Intelephense
+
+PHP Namespace Resolver
+
+Twig Language 2
+
+// parametrage de VSCODE
+
+ctrl + ? 
+
+=> suggest basic 
+=> il faut decoher
+
+=> format => format on save
+il faut cocher
+
+=> emmet 
+=> ajouter language 
+=> twig  html
+
+// parametres pour le git
+
+git config --global user.name "TimurT1"
+git config --global user.email "turgunov-timur@mail.ru"
+
+//creér le projet symfony
+
+symfony new blogT --full 
+
+// installer le serveur
+symfony server:ca:install
+
+// start server
+symfony serve
+
+// pour voir les possibilites de php bin/console
+
+php bin/console
+
+// dans routes.yaml 
+decommenter 
+
+// dans dossier Controller il faut creér un fichier avec le nom de Controller
+avec le code pour tester:
+<?php
+
+namespace App\Controller;
+
+class DefaultController
+{
+
+    public function index()
+    {
+        var_dump("Cela marche!");
+        die();
+    }
+     public function test()
+    {
+        var_dump("Cela est la page de test!");
+        die();
+    }
+}
+
+// git status
+
