@@ -101,6 +101,22 @@ class BlogController extends AbstractController
     //     }
     // }
 
+    // /**
+    //  * @Route("/{id}", name="blog_delete", methods={"POST"})
+    //  */
+    // public function delete(Request $request, Article $article): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->remove($article);
+    //         $entityManager->flush();
+    //     }
+
+    //     $success = 'suppression effectuée avec succès';
+    //     $this->addFlash('message', $success);
+    //     return $this->redirectToRoute('blog');
+    // }
+
     /**
      * @Route("/{id}", name="article_delete", methods={"POST"})
      */
@@ -112,6 +128,6 @@ class BlogController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('blog', [], Response::HTTP_SEE_OTHER);
     }
 }
