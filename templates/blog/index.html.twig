@@ -14,12 +14,16 @@
 					dans la catégorie:
 					{{ article.categorie.nomCategorie }}</div>
 				<div class="content">
-					<img
-					class="imageArticle" src="{{ article.image }}" alt="{{ article.titre }}">
+					<div class="image">
+						<img
+						class="imageArticle" src="{{ article.image }}" alt="{{ article.titre }}">
 					{# {{ article.contenu | raw }} #}
-					<a href="{{path('blog_show', {'id': article.id})}}" class="btn btn-primary">Lire en plus+</a>
-					<a href="{{path('blog_edit', {'id': article.id})}}" class="btn btn-success">Modifier</a>
-					{{ include('blog/delete.html.twig') }}
+					</div>
+					<div class="bouton">
+						<a href="{{path('blog_show', {'id': article.id})}}" class="btn btn-primary">Lire en plus+</a>
+						<a href="{{path('blog_edit', {'id': article.id})}}" class="btn btn-success">Modifier</a>
+						{{ include('blog/delete.html.twig') }}
+					</div>
 				</div>
 			</article>
 		{% endfor %}
