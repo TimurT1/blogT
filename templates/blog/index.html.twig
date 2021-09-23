@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salut BlogController!
+{% endblock %}
+{% block body %}
+	<section class="articles">
+		{% for article in articles %}
+			<article>
+				<h2>{{ article.titre }}</h2>
+				<div class="metadata">Ecrit le
+					{{ article.dateCreation | date('d/m/Y')}}
+					à
+					{{ article.dateCreation | date('H:i')}}
+					dans la catégorie:
+					{{ article.categorie.nomCategorie }}</div>
+				<div class="content">
+					<img src="{{ article.image }}" alt="{{ article.titre }}">
+					{{ article.contenu | raw }}
+					<a href="{{path('blog_show', {'id': article.id})}}" class="btn btn-primary">Lire en plus+</a>
+					<a href="{{path('blog_edit', {'id': article.id})}}" class="btn btn-success">Modifier</a>
+					<a href="{{path('article_delete', {'id': article.id})}}" class="btn btn-danger">Supprimer</a>
+					{# {{ include('blog/delete.html.twig') }} #}
+				</div>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock %}

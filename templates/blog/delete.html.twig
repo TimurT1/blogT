@@ -1,0 +1,7 @@
+{# <form method="post" action="{{ path('blog_delete', {'id': aricle.id}) }}" onsubmit={% trans %} "return confirm('Voulez-vous vraiment supprimer cet article?');" {% endtrans %}>
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+	<button class="btn btn-danger">{% trans %}Supprimer{% endtrans %}</button> #}
+
+</div></form><form method="post" action="{{ path('article_delete', {'id': article.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article?');">
+<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+<button class="btn">Supprimer</button></form>
