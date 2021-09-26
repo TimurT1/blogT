@@ -1,0 +1,189 @@
+//  https://pokeapi.co/ pour Thierry
+
+// extensions pour VSCODE
+
+PHP Intelephense
+
+PHP Namespace Resolver
+
+Twig Language 2
+
+// parametrage de VSCODE
+
+ctrl + ? 
+
+=> suggest basic 
+=> il faut decoher
+
+=> format => format on save
+il faut cocher
+
+=> emmet 
+=> ajouter language 
+=> twig  html
+
+// parametres pour le git
+
+git config --global user.name "TimurT1"
+git config --global user.email "turgunov-timur@mail.ru"
+
+//creér le projet symfony
+
+symfony new blogT --full 
+
+// installer le serveur
+symfony server:ca:install
+
+// start server
+symfony serve
+
+// pour voir les possibilites de php bin/console
+
+php bin/console
+
+// dans routes.yaml 
+decommenter 
+
+// dans dossier Controller il faut creér un fichier avec le nom de Controller
+avec le code pour tester:
+<?php
+
+namespace App\Controller;
+
+class DefaultController
+{
+
+    public function index()
+    {
+        var_dump("Cela marche!");
+        die();
+    }
+     public function test()
+    {
+        var_dump("Cela est la page de test!");
+        die();
+    }
+}
+
+// git status
+// git add .
+// git commit -m "...."
+
+//alias dans le terminal pour installer les packages ("symfony/flex": "^1.3.1")
+ex:  composer require annotation pour que symfony lire les annotation)
+https://flex.symfony.com/
+
+
+// Créer controller
+ex: BlogController
+
+// dans la base.html.twig
+ajouter bootswatch Yeti par example
+https://bootswatch.com/5/yeti/bootstrap.css
+
+puis navbar
+https://bootswatch.com/flatly/
+
+<div class="container"></div> <!-- Pour le contenu-->
+
+// dans home.html.twig 
+{%{% extends "base.html.twig" %} %}
+{% block body %}
+
+{% endblock %}
+
+// dans index.html.twig
+(article>h2{Titre}+div.metadata{Ecrit le 21/09/2021 à 15:00 dans la catégorie: *********}+div.content>img+(p>lorem14)*2+a.btn.btn-primary{Lire en plus+})*3
+
+// show.html.twig
+
+
+//  composer require symfony/orm-pack
+//composer require --dev symfony/maker-bundle
+
+
+// creér une bdd de terminal
+
+// d'abord sur .env  =>    DATABASE_URL="mysql://root:@127.0.0.1:3306/blogT?serve
+
+php bin/console doctrine:database:create
+
+// creér la structure de la bdd
+php bin/console make:entity
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+// dans le BlogController 
+$repo = $this->getDoctrine()->getRepository(Article::class);
+
+$articles = $repo->findAll();
+
+'articles' => $articles
+
+// dans index.html.twig
+{% for article in articles %}
+<h2>{{ article.titre }}</h2>
+....
+
+<a href="{{path('blog_show', {'id': article.id})}}" class="btn btn-primary">Lire en plus+</a>
+
+{% endfor %}
+
+// dans BlogController il est possible optimiser
+ex:  public function index(ArticleRepository $repo)...
+
+// public function create() 
+mettre avant show pour eviter de difficultes avec {id}
+
+// formulaire
+$form = $this->createFormBuilder($article)
+...
+
+// yaml.twig
+form_theme: ['bootstrap_4_layout.html.twig']
+
+// create.html.twig
+{% form_theme formArticle 'bootstrap_4_layout.html.twig'%}
+ 
+//  dans la fonction form(Article $article = null, .... , EntityManagerInterface $manager)
+
+if (!$article) {
+    $article = new Article();
+}
+
+if ($article->getID()) {
+        $article->setDateCreation(new \DateTime());
+}
+
+// créer un formulaire via le terminal
+ php bin/console make:form
+
+ // Assert pour Valider le formulaire
+
+
+ // pour Entite Categorie créer la relation avec Article
+ > articles
+ > relation
+  > OneToMany
+
+  // pour Entite Article créer la relation avec MotCles (MotCles)
+  > motscles
+  > relation
+  > MotCles
+  > ManyToMany
+  > y
+  > articles
+
+  // !!! ObjectManager
+  use Doctrine\ORM\EntityManagerInterface
+
+  //https://www.developpez.net/forums/d1434258/php/bibliotheques-frameworks/symfony/souci-deleteaction-crud-genere/
+
+  // CRUD 
+  php bin\console make:crud
+
+
+  // nettoer le cache
+  php bin/console cache:clear
+
+  // php bin/console doctrine:schema:validate 

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salut BlogController!
+{% endblock %}
+{% block body %}
+	<section class="articles">
+		<form method='get'>
+			<input type="text" name="query" placeholder="Recherche" value="{{ query }}"/>
+			<button type="submit">Rechercher</button>
+		</form>
+
+
+		{% for article in articles %}
+			<article>
+				<h2>{{ article.titre }}</h2>
+				<div class="metadata">Ecrit le
+					{{ article.dateCreation | date('d/m/Y')}}
+					à
+					{{ article.dateCreation | date('H:i')}}
+					dans la catégorie:
+					{{ article.categorie.nomCategorie }}
+					<span>| Auteur:
+					</span>
+					{{ article.auteur }}
+					{# MotsCles #}
+					<label for="motsCles">
+						| MotsCles:
+					</label>
+					<select name="motsCles" id="">
+						{% for motcles in article.motscles %}
+							<option>
+								{{ motcles.nomMotCles }}
+							</option>
+						{% endfor %}
+					</select>
+					{#  #}
+				</div>
+				<div class="content">
+					<div class="image">
+						<img
+						class="imageArticle" src="{{ article.image }}" alt="{{ article.titre }}">
+					{# {{ article.contenu | raw }} #}
+					</div>
+					<div class="bouton">
+						<a href="{{path('blog_show', {'id': article.id})}}" class="btn btn-primary">Lire en plus+</a>
+						<a href="{{path('blog_edit', {'id': article.id})}}" class="btn btn-success">Modifier</a>
+						{{ include('blog/delete.html.twig') }}
+					</div>
+				</div>
+			</article>
+			<h2></h2>
+		{% endfor %}
+	</section>
+{% endblock %}
